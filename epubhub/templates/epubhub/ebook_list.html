@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+<style type="text/css">
+.odd {
+	background-color: #ff9;
+}
+.even {
+}
+
+</style>
+{% endblock %}
+
+{% block content %}
+
+<form method="get" action="">
+{{ form.q }}
+<input type="submit" value="Filter" />
+</form>
+
+<table>
+{% for ebook in object_list %}
+<tr class="{% cycle "odd" "even" %}">
+<td>{{ ebook.path }}</td><td><a href="{% url get_ebook ebook.pk %}">Original</a></td><td><a href="{% url ebook_convert_mobi ebook.pk %}">.mobi</a></td>
+</tr>
+{% endfor %}
+</table>
+
+{% endblock %}
